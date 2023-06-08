@@ -51,7 +51,7 @@
     document.getElementById('card-plane').setAttribute('width', cardWidth);
     document.getElementById('card-plane').setAttribute('height', cardHeigth);
 
-    const modelWidth = urlParams.has('cModelScale') ? urlParams.get('cModelScale') : '0.25';
+    const cModelScale = urlParams.has('cModelScale') ? urlParams.get('cModelScale') : '0.25';
 
     document.getElementById('card-model').setAttribute('scale', cModelScale + " " + cModelScale + " " + cModelScale);
 
