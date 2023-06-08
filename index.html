@@ -10,11 +10,11 @@
 
   <a-scene
     id="scene"
-    mindar-image="imageTargetSrc: https://kverhegg-dae.github.io/targets.mind;filterMinCF:0.1; filterBeta: 10;warmupTolerance: 1;missTolerance: 1"
+    mindar-image=""
     color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false" />
   <a-assets>
-    <img id="card" src="https://kverhegg-dae.github.io/DAE-R-logo.png" />
+    <img id="card" src="https://kverhegg-dae.github.io/DAE-R-logo-bg.png" />
     <a-asset-item id="avatarModel" src="https://kverhegg-dae.github.io/model.glb"></a-asset-item>
   </a-assets>
 
@@ -32,7 +32,7 @@
 
     const urlParams = new URLSearchParams(queryString);
 
-    const mind = urlParams.has('mind') ? urlParams.get('product') : 'https://kverhegg-dae.github.io/targets.mind';
+    const mind = urlParams.has('mind') ? urlParams.get('product') : 'https://kverhegg-dae.github.io/targets-bg.mind';
 
     const filterMinCF = urlParams.has('filterMinCF') ? urlParams.get('filterMinCF') : '0.1';
  
