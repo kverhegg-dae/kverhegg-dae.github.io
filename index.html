@@ -8,11 +8,8 @@
 
 <body onload="init()">
 
-  <a-scene
-    id="scene"
-    mindar-image=""
-    color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false" />
+  <a-scene id="scene" mindar-image="" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights"
+    vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" />
   <a-assets>
     <img id="card" src="https://kverhegg-dae.github.io/DAE-R-logo-bg.png" />
     <a-asset-item id="avatarModel" src="https://kverhegg-dae.github.io/model.glb"></a-asset-item>
@@ -20,8 +17,8 @@
 
   <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
   <a-entity mindar-image-target="targetIndex: 0">
-    <a-plane id = "card-plane" src="#card" position="0 0 0" height="0.77" width="1.18" rotation="0 0 0"></a-plane>
-    <a-gltf-model rotation="90 0 0 " position="0 0 0.1" scale="0.25 0.25 0.25" src="#avatarModel">
+    <a-plane id="card-plane" src="#card" position="0 0 0" height="0.77" width="1.18" rotation="0 0 0"></a-plane>
+    <a-gltf-model id="card-model" rotation="90 0 0 " position="0 0 0.1" scale="0.25 0.25 0.25" src="#avatarModel">
   </a-entity>
   </a-scene>
 </body>
@@ -35,7 +32,7 @@
     const mind = urlParams.has('mind') ? urlParams.get('product') : 'https://kverhegg-dae.github.io/targets.mind';
 
     const filterMinCF = urlParams.has('filterMinCF') ? urlParams.get('filterMinCF') : '0.1';
- 
+
     const filterBeta = urlParams.has('filterBeta') ? urlParams.get('filterBeta') : '10';
 
     const warmupTolerance = urlParams.has('warmupTolerance') ? urlParams.get('warmupTolerance') : '1';
@@ -44,15 +41,21 @@
 
     const mindarImageVal = 'imageTargetSrc: ' + mind + ';filterMinCF:' + filterMinCF + '; filterBeta: ' + filterBeta + ';warmupTolerance: ' + warmupTolerance + ';missTolerance: ' + missTolerance;
 
-    document.getElementById('scene').setAttribute('mindar-image',mindarImageVal);
+    document.getElementById('scene').setAttribute('mindar-image', mindarImageVal);
 
 
 
     const cardWidth = urlParams.has('cWidth') ? urlParams.get('cWidth') : '1.45';
     const cardHeigth = urlParams.has('cHeight') ? urlParams.get('cHeight') : '0.8';
 
-    document.getElementById('card-plane').setAttribute('width',cardWidth);
-    document.getElementById('card-plane').setAttribute('height',cardHeigth);
+    document.getElementById('card-plane').setAttribute('width', cardWidth);
+    document.getElementById('card-plane').setAttribute('height', cardHeigth);
+
+    const modelWidth = urlParams.has('cModelScaleX') ? urlParams.get('cModelScaleX') : '0.25';
+    const modelHeight = urlParams.has('cModelScaleY') ? urlParams.get('cModelScaleY') : '0.25';
+    const modelDepth = urlParams.has('cModelScaleZ') ? urlParams.get('cModelScaleZ') : '0.25';
+
+    document.getElementById('card-model').setAttribute('scale', modelWidth + " " + modelHeight + " " + modelDepth);
 
   }
 
