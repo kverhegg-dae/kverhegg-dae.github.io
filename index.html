@@ -51,11 +51,9 @@
     document.getElementById('card-plane').setAttribute('width', cardWidth);
     document.getElementById('card-plane').setAttribute('height', cardHeigth);
 
-    const modelWidth = urlParams.has('cModelScaleX') ? urlParams.get('cModelScaleX') : '0.25';
-    const modelHeight = urlParams.has('cModelScaleY') ? urlParams.get('cModelScaleY') : '0.25';
-    const modelDepth = urlParams.has('cModelScaleZ') ? urlParams.get('cModelScaleZ') : '0.25';
+    const modelWidth = urlParams.has('cModelScale') ? urlParams.get('cModelScale') : '0.25';
 
-    document.getElementById('card-model').setAttribute('scale', modelWidth + " " + modelHeight + " " + modelDepth);
+    document.getElementById('card-model').setAttribute('scale', cModelScale + " " + cModelScale + " " + cModelScale);
 
   }
 
