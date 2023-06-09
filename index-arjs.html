@@ -1,0 +1,100 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1.3.0/dist/aframe-master.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+</head>
+
+
+<style>
+  .arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+  }
+</style>
+
+<body style="margin : 0px; overflow: hidden;">
+  <!-- minimal loader shown until image descriptors are loaded -->
+  <div class="arjs-loader">
+    <div>Loading, please wait...</div>
+  </div>
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true; precision: medium;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+  >
+    <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
+    <a-nft
+      type="nft"
+      url="https://kverhegg-dae.github.io/DAE-R-logo"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+      <a-entity
+        gltf-model="https://kverhegg-dae.github.io/model.gltf"
+        scale="5 5 5"
+        position="150 300 -100"
+      >
+      </a-entity>
+    </a-nft>
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+
+<script>
+  function init() {
+    const queryString = window.location.search;
+
+    const urlParams = new URLSearchParams(queryString);
+
+    const mind = urlParams.has('mind') ? urlParams.get('product') : 'https://kverhegg-dae.github.io/targets.mind';
+
+    const filterMinCF = urlParams.has('filterMinCF') ? urlParams.get('filterMinCF') : '0.3';
+
+    const filterBeta = urlParams.has('filterBeta') ? urlParams.get('filterBeta') : '4';
+
+    const warmupTolerance = urlParams.has('warmupTolerance') ? urlParams.get('warmupTolerance') : '5';
+
+    const missTolerance = urlParams.has('missTolerance') ? urlParams.get('missTolerance') : '3';
+
+    const mindarImageVal = 'imageTargetSrc: ' + mind + ';filterMinCF:' + filterMinCF + '; filterBeta: ' + filterBeta + ';warmupTolerance: ' + warmupTolerance + ';missTolerance: ' + missTolerance;
+
+    document.getElementById('scene').setAttribute('mindar-image', mindarImageVal);
+
+
+
+    const cardWidth = urlParams.has('cWidth') ? urlParams.get('cWidth') : '1.19';
+    const cardHeigth = urlParams.has('cHeight') ? urlParams.get('cHeight') : '0.83';
+
+    document.getElementById('card-plane').setAttribute('width', cardWidth);
+    document.getElementById('card-plane').setAttribute('height', cardHeigth);
+
+    const cModelScale = urlParams.has('cModelScale') ? urlParams.get('cModelScale') : '0.45';
+
+    document.getElementById('card-model').setAttribute('scale', cModelScale + " " + cModelScale + " " + cModelScale);
+
+  }
+
+
+</script>
+
+
+</html>
